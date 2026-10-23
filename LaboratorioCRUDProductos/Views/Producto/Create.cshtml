@@ -1,0 +1,98 @@
+﻿@model LaboratorioCRUDProductos.Models.ProductoModel
+
+
+@{
+    ViewBag.Title = "Agregar producto";
+}
+
+
+<h2>Agregar nuevo producto</h2>
+
+
+<hr />
+
+
+@using (Html.BeginForm("Create", "Producto", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.ValidationSummary(true, "",
+            new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+
+
+        @Html.TextBoxFor(model => model.Nombre,
+                 new { @class = "form-control" })
+
+
+        @Html.ValidationMessageFor(model => model.Nombre,
+                 "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+
+
+        @Html.TextBoxFor(model => model.Descripcion,
+                 new { @class = "form-control" })
+
+
+        @Html.ValidationMessageFor(model => model.Descripcion,
+                 "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Precio)
+
+
+        @Html.TextBoxFor(model => model.Precio,
+                 new
+                 {
+                     @class = "form-control",
+                     type = "number",
+                     step = "0.01",
+                     min = "0"
+                 })
+
+
+        @Html.ValidationMessageFor(model => model.Precio,
+                 "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Stock)
+
+
+        @Html.TextBoxFor(model => model.Stock,
+                 new
+                 {
+                     @class = "form-control",
+                     type = "number",
+                     min = "0",
+                     step = "1"
+                 })
+
+
+        @Html.ValidationMessageFor(model => model.Stock,
+                 "", new { @class = "text-danger" })
+    </div>
+
+
+    <br />
+
+
+    <input type="submit"
+           value="Guardar producto"
+           class="btn btn-success" />
+
+
+    @Html.ActionLink("Cancelar", "Index",
+            null, new { @class = "btn btn-default" })
+}

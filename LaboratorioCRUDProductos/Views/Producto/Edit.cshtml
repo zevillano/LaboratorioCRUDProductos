@@ -1,0 +1,64 @@
+﻿@model LaboratorioCRUDProductos.Models.ProductoModel
+
+
+@{
+    ViewBag.Title = "Editar producto";
+}
+
+
+<h2>Editar producto</h2>
+
+
+@using (Html.BeginForm("Edit", "Producto", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+
+    @Html.ValidationSummary(true, "",
+            new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre,
+                 new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Nombre)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descripcion)
+        @Html.TextBoxFor(model => model.Descripcion,
+                 new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Descripcion)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Precio)
+        @Html.TextBoxFor(model => model.Precio,
+                 new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Precio)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Stock)
+        @Html.TextBoxFor(model => model.Stock,
+                 new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Stock)
+    </div>
+
+
+    <br />
+
+
+    <input type="submit"
+           value="Guardar cambios"
+           class="btn btn-success" />
+
+
+    @Html.ActionLink("Cancelar", "Index",
+            null, new { @class = "btn btn-default" })
+}
